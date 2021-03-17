@@ -1,0 +1,13 @@
+import urllib.request as req
+import bs4
+url="https://forum.gamer.com.tw/B.php?bsn=70540"
+request=req.Request(url, headers={
+"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+    })
+with req.urlopen(request) as response:
+    data=response.read().decode("utf-8")
+   
+root=bs4.BeautifulSoup(data,"html.parser")
+titles=root.find_all("p","b-list__main__title")
+for a in titles:
+    print(a.string)
