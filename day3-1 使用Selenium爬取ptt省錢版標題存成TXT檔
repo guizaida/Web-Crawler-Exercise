@@ -6,6 +6,7 @@ driver.get("https://www.ptt.cc/bbs/Lifeismoney/index.html")
 soup = BeautifulSoup(driver.page_source)
 for aaa in soup.select("div div.title"):
     if aaa.a !=None:
-        print(aaa.text)
+        with open("123"+".txt","a",encoding="utf-8") as file:
+            file.write(aaa.a.string+("\n"))
 
 driver.quit()
