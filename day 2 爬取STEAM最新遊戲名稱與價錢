@@ -14,4 +14,4 @@ NO = len(titles)
 for a in range (0,NO)   :
     Titles = titles[a].string
     Price = price[a].string
-    print(Titles,Price)
+    print(Titles+":",Price)
