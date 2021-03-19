@@ -1,0 +1,11 @@
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+driver = webdriver.Chrome()
+driver.get("https://www.ptt.cc/bbs/Lifeismoney/index.html")
+soup = BeautifulSoup(driver.page_source)
+for aaa in soup.select("div div.title"):
+    if aaa.a !=None:
+        print(aaa.text)
+
+driver.quit()
