@@ -1,0 +1,19 @@
+import urllib.request as req
+import bs4
+import pandas as pd
+url="https://notorious-2019.com/list.aspx?tid=11"
+request=req.Request(url,headers={
+    "user-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.90 Safari/537.36"
+})
+with req.urlopen(request) as reponse:
+    data=reponse.read().decode("utf-8")
+
+root=bs4.BeautifulSoup(data,"html.parser")
+title=root.find_all("div", class_="ps-title-lg")
+price=root.find_all("div",class_="ps-price")
+
+q=len(price)
+for a in range(0,q):
+    titles=title[a].string
+    prices=price[a].span.string
+    print(titles+":",prices)
