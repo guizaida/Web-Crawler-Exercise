@@ -1,0 +1,15 @@
+import bs4
+import urllib.request as req
+url="https://tw.bid.yahoo.com/search/auction/product?p=%E4%BA%8C%E6%89%8B%E7%AD%86%E9%9B%BB14%E5%90%8B&pg=1"
+request=req.Request(url)
+with req.urlopen(request) as response:
+    data=response.read().decode("utf-8")
+root=bs4.BeautifulSoup(data,"html.parser")
+title=root.find_all("img alt=")
+price=root.find_all("em")
+NO = len(title)
+
+for a in range (0,NO)   :
+    titles = title[a].string
+    Price = price[a].string
+    print(titles+":",Price)
